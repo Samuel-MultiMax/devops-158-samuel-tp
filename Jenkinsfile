@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
+                git branch: 'main', credentialsId: 'github-credentials',  url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
             }
         }
 
         stage('Pull latest code') {
             steps {
                 dir('/home/samuel/devops-158-samuel-tp') {
-                    git branch: 'main', url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
+                    git branch: 'main', credentialsId: 'github-credentials',  url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
                 }
             }
         }
