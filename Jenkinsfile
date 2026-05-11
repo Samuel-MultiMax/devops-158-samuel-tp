@@ -31,6 +31,25 @@ pipeline {
             }
         }
 
+        stage('Run unit tests') {
+            steps {
+                dir('/var/snap/jenkins/common/devops-158-samuel-tp') {
+                    sh '''
+                        . venv/bin/activate
+                        python -m pytest test_app.py -v --tb=short
+                    '''
+                }
+            }
+            post {
+                success {
+                    echo 'Tous les tests unitaires sont passés avec succès !'
+                }
+                failure {
+                    echo 'Échec des tests unitaires. Le déploiement est annulé.'
+                }
+            }
+        }
+
         stage('Restart Flask app') {
             steps {
                 script {
