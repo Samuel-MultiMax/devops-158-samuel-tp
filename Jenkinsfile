@@ -36,9 +36,9 @@ pipeline {
                 script {
                     sh 'pkill -f "python app.py" || true'
                     sh '''
-                        cd /var/snap/jenkins/common/devops-158-samuel-tp
+                        cd /home/samuel/devops-158-samuel-tp
                         . venv/bin/activate
-                        nohup python app.py > flask.log 2>&1 &
+                        nohup python app.py > /home/samuel/devops-158-samuel-tp/flask.log 2>&1 &
                     '''
                 }
             }
