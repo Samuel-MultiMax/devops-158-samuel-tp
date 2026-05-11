@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'github-credentials',  url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
+                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
             }
         }
 
         stage('Pull latest code') {
             steps {
                 dir('/var/snap/jenkins/common/devops-158-samuel-tp') {
-                    git branch: 'main', credentialsId: 'github-credentials',  url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
+                    git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/Samuel-MultiMax/devops-158-samuel-tp'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 dir('/var/snap/jenkins/common/devops-158-samuel-tp') {
                     sh '''
-                        source venv/bin/activate
+                        . venv/bin/activate
                         pip install flask
                     '''
                 }
@@ -37,7 +37,7 @@ pipeline {
                     sh 'pkill -f "python app.py" || true'
                     sh '''
                         cd /var/snap/jenkins/common/devops-158-samuel-tp
-                        source venv/bin/activate
+                        . venv/bin/activate
                         nohup python app.py > flask.log 2>&1 &
                     '''
                 }
