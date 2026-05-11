@@ -34,12 +34,7 @@ pipeline {
         stage('Restart Flask app') {
             steps {
                 script {
-                    sh 'pkill -f "python app.py" || true'
-                    sh '''
-                        cd /home/samuel/devops-158-samuel-tp
-                        . venv/bin/activate
-                        nohup python app.py > /home/samuel/devops-158-samuel-tp/flask.log 2>&1 &
-                    '''
+                    sh 'sudo systemctl restart flask-app'
                 }
             }
         }
